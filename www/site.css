@@ -1,0 +1,51 @@
+div.main {
+    color:#000030;
+    background: #ccccff;
+    text-align: center;
+    font-family: sans-serif;
+    margin: 1%;
+}
+div.menu1{
+    color:#000030;
+    background: #aaaaff;
+    font-size: 8pt;
+}
+div.sidemenu{
+    color:#0000aa;
+    background: #aaffaa;
+    width:10%;
+    float:left;
+    min-width: 100px;
+    font-size: 9pt;
+}
+div.text{
+    color:#000030;
+    background: #ccffcc;
+    font-size: 12pt;
+}
+select.menu1 {
+    font-size:8pt;	
+    background: #aaaaff;
+    color:#000000;
+}
+input.menu1 {
+	font-size:8pt;
+	background: #aaaaff;
+	color: #000000;
+}
+table.maintable {
+	font-size:9pt;
+	border-color:#ccddcc;
+	border-style:hidden;
+	border-collapse:collapse;
+	
+}
+span.remarks {
+	font-size:7pt;
+}
+.adminedit {
+    font-size: 8pt;
+    color: black;
+    background: #ccffcc;
+
+}

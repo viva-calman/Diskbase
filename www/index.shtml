@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Disk Catalog</title>
+<link rel="stylesheet" type="text/css" href="site.css">
+</head>
+<body>
+<div class="main">
+<h1>Каталог дисков</h1>
+    <div class="text">
+<!--	<div class="filter">
+	    глокая куздра штеко кудланула бокра и курдячит бокренка
+	</div>-->
+	<div class="sidemenu">
+	    <h4>Меню</h4>
+	    <a href="http://localhost/cgi-bin/login.pl">Вход</a><br>
+	    <a href="http://localhost/cgi-bin/cat.pl">Каталог</a><br>
+	    <a href=""></a><br>
+	    <a href=""></a><br>
+	</div>
+	<div class="mainblock">
+	    Данная система представляет из себя каталог дисков-приложений к журналам, а также остальных образов дисков, которые доступны в библиотеке
+	</div>
+    </div>
+<div>
+</body>
+</html>
+

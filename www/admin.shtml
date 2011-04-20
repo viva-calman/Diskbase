@@ -1,0 +1,34 @@
+<html>
+<head>
+<title>Disk Catalog</title>
+<link rel="stylesheet" type="text/css" href="site.css">
+</head>
+<body>
+<div class="main">
+<h1>Каталог дисков</h1>
+    <div class="text">
+	<div class="filter">
+	    глокая куздра штеко кудланула бокра и курдячит бокренка
+	</div>
+	<div class="sidemenu">
+	    <h4>Меню</h4>
+	    <a href="">Главная</a><br>
+	    <a href="">Каталог</a><br>
+	    <a href=""></a><br>
+	    <a href=""></a><br>
+	</div>
+	<div class="mainblock">
+	    <form action="http://localhost/cgi-bin/admlogin.pl" method="post">
+	    <table align="center" sellspacing=0 border=0>
+		<tr><td colspan=2>Вход в систему управления каталогом</td></tr>
+		<tr><td align="right">Имя пользователя:</td><td><input type="text" name="adminname"></td></tr>
+		<tr><td align="right">Пароль:</td><td><input type="password" name="adminpassword"></td></tr>
+		<tr><td align="right"><input type="submit" value="Войти"></td><td><input type="reset" value="Сброс"></td></tr>
+	    </table>
+	    </form>
+	</div>
+    </div>
+<div>
+</body>
+</html>
+
