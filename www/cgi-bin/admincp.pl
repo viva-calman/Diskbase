@@ -21,6 +21,40 @@ my $q=new CGI;
 #Подключение к БД
 my $dbh=DBI->connect($dsn,$db_user,$db_password);
 #
+#Функция вывода сокращенного каталога
+sub short_cat {
+	my $sth=$dbh->prepare("select * from lable");
+	$sth->execute() or die $DBI::errstr;
+	my %lablelist;
+	while(my($lableid,$lable)=$sth->fetchrow_array())
+	{
+	    $lablelist{$lableid}=$lable;
+	}
+	
+	$sth=$dbh->prepare("select id,type,title,lable,year,number from imgs order by createdate desc limit 10");
+	$sth->execute() or die $DBI::errstr;
+	my $tabname;
+	print "<table cellspacing=0 border=1 class=\"maintable\">";
+	print "<tr><td><b>Название</b></td><td><b>Номер</b></td><td><b>Год</b></td><tr>";
+	while (my($sid,$stype,$stitle,$slable,$syear,$snumber)=$sth->fetchrow_array())
+	{
+		if($slable==5)
+		{
+		    $tabname=$stitle;
+		}
+		else
+		{
+		    $tabname=$lablelist{$slable};
+		}
+		print "<tr><td>$tabname</td><td>$snumber</td><td>$syear</td></tr>";
+	}
+	print "</table>";
+	$sth->finish();
+}
+
+
+
+#
 #Запрос кукисов
 my %cookies=fetch CGI::Cookie;
 if ($cookies{'asessionkey'})
@@ -52,11 +86,11 @@ if ($cookies{'asessionkey'})
 		    {
 			print $_;
 		    }
-		    print "<table class=\"maintable\" cellspacing=0 border=1 align=\"center\">";       
-		    print "<tr><td>Каталог</td><td>Активные пользователи</td><td>Действия</td></tr>";
-		    print "<tr><td>";
+		    print "<table class=\"maintable\" cellspacing=0 border=1 align=\"center\" >";       
+		    print "<tr><td><a href=\"".$sitename."/cgi-bin/admincat.pl\">Каталог</a></td><td>Активные пользователи</td><td>Действия</td></tr>";
+		    print "<tr><td valign=\"top\">";
 		    #Функция вывода сокращенного каталога
-
+		    &short_cat();
 
 		    print "</td><td>";
 		    #Функция вывода активных пользователей

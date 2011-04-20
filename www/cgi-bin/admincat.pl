@@ -168,10 +168,10 @@ if ($cookies{'asessionkey'})
 			    #
 			    #Рисуем таблицу
 			    print "<table align=\"center\" cellspacing=0 border=4 class=\"maintable\">"; 
-			    print "<tr><td><a href=\"".$sitename."/cgi-bin/cat.pl?sort=1&act=search&lable=".$labl."&stype=".$typ."&searchstr=".$keyword."\">Название</a></td>";
-			    print "<td><a href=\"".$sitename."/cgi-bin/cat.pl?sort=2&act=search&lable=".$labl."&stype=".$typ."&searchstr=".$keyword."\">Тип</a></td>";
-			    print "<td><a href=\"".$sitename."/cgi-bin/cat.pl?sort=3&act=search&lable=".$labl."&stype=".$typ."&searchstr=".$keyword."\">Год издания</a></td><td>Номер</td>";
-			    print "<td><a href=\"".$sitename."/cgi-bin/cat.pl?sort=4&act=search&lable=".$labl."&stype=".$typ."&searchstr=".$keyword."\">Добавлено</a></td><td>Описание</td></tr>";
+			    print "<tr><td><a href=\"".$sitename."/cgi-bin/admincat.pl?sort=1&act=search&lable=".$labl."&stype=".$typ."&searchstr=".$keyword."\">Название</a></td>";
+			    print "<td><a href=\"".$sitename."/cgi-bin/admincat.pl?sort=2&act=search&lable=".$labl."&stype=".$typ."&searchstr=".$keyword."\">Тип</a></td>";
+			    print "<td><a href=\"".$sitename."/cgi-bin/admincat.pl?sort=3&act=search&lable=".$labl."&stype=".$typ."&searchstr=".$keyword."\">Год издания</a></td><td>Номер</td>";
+			    print "<td><a href=\"".$sitename."/cgi-bin/admincat.pl?sort=4&act=search&lable=".$labl."&stype=".$typ."&searchstr=".$keyword."\">Добавлено/изменено</a></td><td>Описание</td></tr>";
 			    ##
 			    my $tabtitle;
 			    while(my($id,$itype,$title,$lable,$year,$number,$description,$createdate,$autorun)=$sth->fetchrow_array())
@@ -186,7 +186,7 @@ if ($cookies{'asessionkey'})
 				    $tabtitle=$lablelist{$lable};
 				}
 				print "<tr><td>$tabtitle</td><td>".$typelist{$itype}."</td><td>$year</td><td>$number</td><td>$createdate</td><td>$description";
-				print "<a href=\"".$sitename."/cgi-bin/catel.pl?id=$id\">Подробнее</a></td></tr>";
+				print "<a href=\"".$sitename."/cgi-bin/adminedit.pl?id=$id\">Редактировать</a></td></tr>";
 
 			    }
 			    $sth->finish();
@@ -252,10 +252,10 @@ if ($cookies{'asessionkey'})
 			    $sth->execute();
 
 			    print "<table align=\"center\" cellspacing=0 border=4 class=\"maintable\">"; 
-			    print "<tr><td><a href=\"".$sitename."/cgi-bin/cat.pl?sort=1\">Название</a>";
-			    print "</td><td><a href=\"".$sitename."/cgi-bin/cat.pl?sort=2\">Тип</a></td>";
-			    print "<td><a href=\"".$sitename."/cgi-bin/cat.pl?sort=3\">Год издания</td>";
-			    print "<td>Номер</td><td><a href=\"".$sitename."/cgi-bin/cat.pl?sort=4\">Добавлено</td>";
+			    print "<tr><td><a href=\"".$sitename."/cgi-bin/admincat.pl?sort=1\">Название</a>";
+			    print "</td><td><a href=\"".$sitename."/cgi-bin/admincat.pl?sort=2\">Тип</a></td>";
+			    print "<td><a href=\"".$sitename."/cgi-bin/admincat.pl?sort=3\">Год издания</td>";
+			    print "<td>Номер</td><td><a href=\"".$sitename."/cgi-bin/admincat.pl?sort=4\">Добавлено/изменено</td>";
 			    print "<td>Описание</td></tr>";
 			    ##
 			    my $tabtitle;
@@ -273,7 +273,7 @@ if ($cookies{'asessionkey'})
 				    $tabtitle=$lablelist{$lable};
 				}
 				print "<tr><td>$tabtitle</td><td>".$typelist{$itype}."</td><td>$year</td><td>$number</td><td>$createdate</td><td>$description ";
-				print "<a href=\"".$sitename."/cgi-bin/catel.pl?id=$id\">Подробнее</a></td></tr>";
+				print "<a href=\"".$sitename."/cgi-bin/adminedit.pl?id=$id\">редактировать</a></td></tr>";
 
 			    }
 			    $sth->finish();

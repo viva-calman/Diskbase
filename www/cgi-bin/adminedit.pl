@@ -156,8 +156,8 @@ if ($cookies{'asessionkey'})
 			    }
 			    else
 			    {
-			    my $sth=$dbh->prepare("update imgs set title='$title',lable='$lable',type='$type',year=$year,number=$number, description='$description',autorun=$autorun where id=$editid");
-			    $sth->execute();
+			    my $sth=$dbh->prepare("update imgs set title='$title',lable='$lable',type='$type',year=$year,number=$number, description='$description',autorun='$autorun' where id=$editid");
+			    $sth->execute() or die $DBI::errstr;
 			    print "Редактирование успешно. Нажмите для перехода <a href=\"".$sitename."/cgi-bin/admincat.pl\">в каталог</a> или <a href=\"".$sitename."/cgi-bin/admincp.pl\">в панель управления</a>";
 			    print $q->end_html();
 			    }
