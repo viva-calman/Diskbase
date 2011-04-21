@@ -36,7 +36,6 @@ if ($cookies{'sessionkey'})
 		#
 		#...и не просрочены - редирект на главную
 		$sth->finish();	
-		#my $q=new CGI;
 		print $q->redirect($sitename);
 		}
 	
@@ -106,7 +105,7 @@ if ($act eq 'login')
 		$sth->execute();
 		$sth->finish();
 		print $q->header(-charset=>'utf-8',-cookie=>$c);
-		print $q->start_html;
+		print $q->start_html(-title=>'Вход успешен');
 		print "Вход успешен<br><a href=\"".$sitename."\">Нажмите для перехода на главную страницу</a>";
 	}
 	print "</div></div>";
@@ -117,7 +116,7 @@ else
 	#
 	#Отрисовка формы
 	print $q->header(-charset=>'utf-8');
-	print $q->start_html(-style=>'../site.css');
+	print $q->start_html(-style=>'../site.css',-title=>'Страница входа');
 	open (HEAD,"head.inc");
 	while(<HEAD>)
 	{
@@ -129,6 +128,7 @@ else
 	{
 		print $_;
 	}
+	close(FORM);
 	print "</div></div>";
 	print $q->end_html;
 }

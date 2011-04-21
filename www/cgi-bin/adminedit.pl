@@ -48,7 +48,7 @@ if ($cookies{'asessionkey'})
 		    my $sth=$dbh->prepare("update adminsession set sessiontime=$sesslong where id=$sessid");
 		    $sth->execute();
 		    print $q->header(-charset=>'utf-8');
-		    print $q->start_html(-style=>'../site.css');
+		    print $q->start_html(-style=>'../site.css', -title=>'Редактирование записи диска');
 		    my $act=$q->param('act');
 		    switch ($act) 
 		    {

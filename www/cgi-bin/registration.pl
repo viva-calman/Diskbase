@@ -55,7 +55,7 @@ if ($cookies{'sessionkey'})
 #my $q= new CGI;
 print $q->header(-charset=>'utf-8');
 my $act=$q->param('act');
-print $q->start_html(-style=>'../site.css');
+print $q->start_html(-style=>'../site.css',-title=>'Регистрация');
 open (HEAD,"head.inc");
 while(<HEAD>)
 {
@@ -137,6 +137,7 @@ else
 	{
 		print $_;
 	}
+	close(FROM);
 	print "</div></div>";
 	print $q->end_html;
 }

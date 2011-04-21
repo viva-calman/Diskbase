@@ -33,7 +33,7 @@ if ($cookies{'sessionkey'})
 	$sth->execute() or die $DBI::errstr;
 	my $q=new CGI;
 	print $q->header(-charset=>'utf-8');
-	print $q->start_html();
+	print $q->start_html(-title='Выход из системы');
 	print "Вы успешно вышли из системы.<br><a href=\"".$sitename."\">Перейти на главную страницу</a>";
 
 	$sth->finish();

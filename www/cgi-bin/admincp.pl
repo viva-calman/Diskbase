@@ -52,8 +52,22 @@ sub short_cat {
 	$sth->finish();
 }
 
-
-
+#функция вывода активных пользователей
+sub active_users {
+	my $overtime=$sesslong-$sessionlong;
+	my $sth=$dbh->prepare("delete from usersession where sessiontime < $overtime");
+	$sth->execute() or die $DBI::errstr;
+	$sth=$dbh->prepare("select users.username,users.id,usersession.id, usersession.sessionstart,usersession.sessiontime from users,usersession where usersession.userid=users.id and usersession.sessiontime > $overtime order by usersession.sessionstart");	
+	$sth->execute() or die $DBI::errstr;
+	print "<table cellspacing=0 border=1 class=\"maintable\">";
+	print "<tr><td><b>Имя пользователя</b></td><td><b>Сессия начата</b></td><td><b>Действие</b></td></tr>";
+	while (my($username,$users_id,$usersession_id,$usersession_start,$usersession_time)=$sth->fetchrow_array())
+	{
+		print "<tr><td>$username</td><td>$usersession_start</td><td><a href=\"".$sitename."/cgi-bin/adminuser.pl?id=".$users_id."\">Просмотреть</a></td></tr>";
+	}
+	print "</table>";
+	$sth->finish();
+}
 #
 #Запрос кукисов
 my %cookies=fetch CGI::Cookie;
@@ -80,34 +94,35 @@ if ($cookies{'asessionkey'})
 		    my $sth=$dbh->prepare("update adminsession set sessiontime=$sesslong where id=$sessid");
 		    $sth->execute();
 		    print $q->header(-charset=>'utf-8');
-		    print $q->start_html(-style=>'../site.css');
+		    print $q->start_html(-style=>'../site.css', -title=>'Панель управления');
 		    open (ADMINHEAD,"adminhead.inc");
 		    while (<ADMINHEAD>)
 		    {
 			print $_;
 		    }
+		    close (ADMINHEAD);
 		    print "<table class=\"maintable\" cellspacing=0 border=1 align=\"center\" >";       
 		    print "<tr><td><a href=\"".$sitename."/cgi-bin/admincat.pl\">Каталог</a></td><td>Активные пользователи</td><td>Действия</td></tr>";
 		    print "<tr><td valign=\"top\">";
 		    #Функция вывода сокращенного каталога
 		    &short_cat();
 
-		    print "</td><td>";
+		    print "</td><td valign=top>";
 		    #Функция вывода активных пользователей
-
+		    &active_users();
 
 		    print "</td><td>";
 		    #Таблица действий
 			print "<table cellspacing=0 border=0 align=\"center\">";
 			print "<tr><td ><b>Управление пользователями</b></td></tr>";
-			print "<tr><td align=left>Список пользователей</td></tr>";
-			print "<tr><td align=left>Активные сессии пользователей</td></tr>";
+			print "<tr><td align=left><a href=\"".$sitename."\">Список пользователей</a></td></tr>";
+			print "<tr><td align=left><a href=\"".$sitename."\">Активные сессии пользователей</a></td></tr>";
 			print "<tr><td><b>Управление каталогом</b></td></tr>";
-			print "<tr><td align=left>Просмотр каталога</td></tr>";
-			print "<tr><td align=left>Добавление нового диска</td></tr>";
+			print "<tr><td align=left><a href=\"".$sitename."/cgi-bin/admincat.pl\">Просмотр каталога</a></td></tr>";
+			print "<tr><td align=left><a href=\"".$sitename."\">Добавление нового диска</a></td></tr>";
 			print "<tr><td><b>Администрирование</b></td></tr>";
-			print "<tr><td align=left>Список администраторов</td></tr>";
-			print "<tr><td align=left>Смена пароля администратора</td></tr>";
+			print "<tr><td align=left><a href=\"".$sitename."\">Список модераторов</a></td></tr>";
+			print "<tr><td align=left><a href=\"".$sitename."/cgi-bin/adminpasschange.pl\">Смена пароля администратора</a></td></tr>";
 			print "</table>";
 		    print "</td></tr>";
 		    print "</table>";

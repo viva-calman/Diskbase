@@ -50,7 +50,7 @@ if ($cookies{'sessionkey'})
 		    my $q=new CGI;
 		    my $selid=$q->param('id');
 		    print $q->header(-charset=>'utf-8');
-		    print $q->start_html(-style=>"../site.css");
+		    print $q->start_html(-style=>"../site.css",-title=>'Просмотр информации о диске');
 		    #
 		    #Вывод заголовка, верхнего меню
 		    open (HEAD, "catel.inc");
@@ -58,6 +58,7 @@ if ($cookies{'sessionkey'})
 		    {
 			    print $_;
 		    }
+		    close (HEAD);
 		    print "<table border=0 sellspacing=0 align=center width=100%><tr><td align=left><a href=\"".$sitename."/\">На главную</a>  ";
 		    print "<a href=\"".$sitename."/cgi-bin/cat.pl\">Вернуться в каталог</a></td>";
 		    print "<td align=right><a href=\"".$sitename."/cgi-bin/logout.pl\">Выход из системы</a></td></tr></table>";

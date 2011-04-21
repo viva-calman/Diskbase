@@ -104,7 +104,7 @@ if ($act eq 'login')
 		$sth->execute();
 		$sth->finish();
 		print $q->header(-charset=>'utf-8',-cookie=>$c);
-		print $q->start_html;
+		print $q->start_html(-title='Вход в систему');
 		print "Вход успешен<br><a href=\"".$sitename."cgi-bin/admincp.pl\">Нажмите для перехода на главную страницу</a>";
 	}
 	print "</div></div>";
@@ -115,7 +115,7 @@ else
 	#
 	#Отрисовка формы
 	print $q->header(-charset=>'utf-8');
-	print $q->start_html(-style=>'../site.css');
+	print $q->start_html(-style=>'../site.css',-title=>'Вход в систему');
 	open (HEAD,"head.inc");
 	while(<HEAD>)
 	{
@@ -127,6 +127,7 @@ else
 	{
 		print $_;
 	}
+	close(FORM);
 	print "</div></div>";
 	print $q->end_html;
 }
