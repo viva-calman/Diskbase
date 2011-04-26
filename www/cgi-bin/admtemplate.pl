@@ -38,7 +38,7 @@ if ($cookies{'asessionkey'})
 		$sth=$dbh->prepare("delete from adminsession where sessionkey='$sesskey'");
 		$sth->execute();
 		$sth->finish();
-		print $q->redirect('login.pl');
+		print $q->redirect('adminlogin.pl');
 		}
 	else
 		{
@@ -52,5 +52,5 @@ else
 	{
 	#
 	#Если кукисов нет - редирект
-	print $q->redirect('login.pl')
+	print $q->redirect('adminlogin.pl')
 	}

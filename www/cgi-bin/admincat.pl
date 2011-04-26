@@ -191,7 +191,8 @@ if ($cookies{'asessionkey'})
 
 			    }
 			    $sth->finish();
-			    print "</table></div>"
+			    print "</table><a href=\"".$sitename."/cgi-bin/admincp.pl\">Вернуться в панель управления</a>";
+			    print "</div>";
 
 			}
 			#
@@ -278,7 +279,8 @@ if ($cookies{'asessionkey'})
 
 			    }
 			    $sth->finish();
-			    print "</table></div>"
+			    print "</table><a href=\"".$sitename."/cgi-bin/admincp.pl\">Вернуться в панель управления</a>";
+			    print "</div>";
 			}
 		    }
 		    print $q->end_html;

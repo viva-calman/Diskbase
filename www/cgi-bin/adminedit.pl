@@ -171,6 +171,7 @@ if ($cookies{'asessionkey'})
 		    
 			    }
 			    close (AHEADER);
+			    print "<b>редактирование данных о диске</b>";
 			    my $editid=$q->param('id');
 			    $sth=$dbh->prepare("select * from imgs where id=$editid");
 			    $sth->execute();
@@ -201,7 +202,6 @@ if ($cookies{'asessionkey'})
 			    {
 				my $tabtitle=$lablelist{$lable};
 			    }
-			    print "<h3>Редактирование данных о диске</h3>";
 			    print "<form action=\"adminedit.pl\" method=\"post\">";
 			    print "<table class=\"maintable\" cellspacing=0 border=1 align=\"center\">";
 			    print "<tr><td>Название</td><td align=\"left\"><input type=\"text\" name=\"title\" value=\"$title\" class=\"adminedit\"></td></tr>";	
