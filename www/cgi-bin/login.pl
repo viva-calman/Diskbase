@@ -11,6 +11,7 @@ use Digest::MD5 qw(md5_hex);
 #
 #
 my $sitename="http://localhost/";
+my $admincontact="webmaster\@localhost";
 my $dsn="DBI:mysql:diskdb:localhost";
 my $db_user="discbase";
 my $db_password="windowssuxx";
@@ -55,23 +56,24 @@ if ($act eq 'login')
 {
 	my $username=$q->param('username');
 	my $password=md5_hex($q->param('password'));
-	my $errstate;
+	my $errstate=0;
 	my $errmessage;
-	my $sth=$dbh->prepare("select id,password from users where username='$username' and status=0");
-	$sth->execute();
-	my ($id, $checkpass)=$sth->fetchrow_array();
+	my $sth=$dbh->prepare("select id,password,status from users where username='$username'");
+	$sth->execute() or die $DBI::errstr;
+	my ($id, $checkpass,$status)=$sth->fetchrow_array();
 	$sth->finish();
 #Тут бубет проверка введенных символов
-	if ($checkpass eq $password)
-	{
-		$errstate=0;
-	}
-	else
+	if ($checkpass ne $password)
 	{
 		#
 		#Ошибка логина
 		$errstate=1;
 		$errmessage="Неверные данные пользователя<br>если вы забыли свой пароль, обратитесь к администратору";
+	}
+	if ($status != 0)
+	{
+		$errstate=1;
+		$errmessage="Пользователь заблокирован. Свяжитесь с администратором для решения проблемы. $admincontact";
 	}
 	if($errstate==1)
 	{
@@ -99,10 +101,18 @@ if ($act eq 'login')
 		my $sesskey=md5_hex($now);
 		my $c=new CGI::Cookie(-name=>'sessionkey',-value=>$sesskey);	
 		$sth=$dbh->prepare("select lastdisk from users where username='$username'");
-		$sth->execute();
+		$sth->execute() or die $DBI::errstr;
 		my $lastdisk=$sth->fetchrow_array();
-		$sth=$dbh->prepare("insert into usersession (userid,sessionkey,sessionstart,sessiontime,diskid) values ($id,'$sesskey','$now',$sesslong,$lastdisk)");
-		$sth->execute();
+		if ($lastdisk=='')
+		{
+		    $lastdisk=0;
+		}
+		$sth->finish();
+		$sth=$dbh->prepare("insert into usersession (userid,sessionkey,sessionstart,sessiontime,diskid) values ($id,'$sesskey','$now',$sesslong,$lastdisk);");
+		$sth->execute() or die $DBI::errstr;
+		#Создание записи о последнем посещении
+		$sth=$dbh->prepare("update users set lastvisit='$now' where id=$id");
+		$sth->execute() or die $DBI::errstr;
 		$sth->finish();
 		print $q->header(-charset=>'utf-8',-cookie=>$c);
 		print $q->start_html(-title=>'Вход успешен');
@@ -127,6 +137,7 @@ else
 	while(<FORM>)
 	{
 		print $_;
+
 	}
 	close(FORM);
 	print "</div></div>";

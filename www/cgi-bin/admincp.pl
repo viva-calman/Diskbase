@@ -60,10 +60,10 @@ sub active_users {
 	$sth=$dbh->prepare("select users.username,users.id,usersession.id, usersession.sessionstart,usersession.sessiontime from users,usersession where usersession.userid=users.id and usersession.sessiontime > $overtime order by usersession.sessionstart");	
 	$sth->execute() or die $DBI::errstr;
 	print "<table cellspacing=0 border=1 class=\"maintable\">";
-	print "<tr><td><b>Имя пользователя</b></td><td><b>Сессия начата</b></td><td><b>Действие</b></td></tr>";
+	print "<tr><td><b>Имя пользователя</b></td><td><b>Сессия начата</b></td></tr>";
 	while (my($username,$users_id,$usersession_id,$usersession_start,$usersession_time)=$sth->fetchrow_array())
 	{
-		print "<tr><td>$username</td><td>$usersession_start</td><td><a href=\"".$sitename."/cgi-bin/adminuser.pl?id=".$users_id."\">Просмотреть</a></td></tr>";
+		print "<tr><td>$username</td><td>$usersession_start</td></tr>";
 	}
 	print "</table>";
 	$sth->finish();
@@ -102,7 +102,7 @@ if ($cookies{'asessionkey'})
 		    }
 		    close (ADMINHEAD);
 		    print "<table class=\"maintable\" cellspacing=0 border=1 align=\"center\" >";       
-		    print "<tr><td><a href=\"".$sitename."/cgi-bin/admincat.pl\">Каталог</a></td><td>Активные пользователи</td><td>Действия</td></tr>";
+		    print "<tr><td><a href=\"".$sitename."/cgi-bin/admincat.pl\">Каталог</a></td><td><a href=\"".$sitename."/cgi-bin/adminusers.pl\">Активные пользователи</a></td><td>Действия</td></tr>";
 		    print "<tr><td valign=\"top\">";
 		    #Функция вывода сокращенного каталога
 		    &short_cat();
@@ -115,8 +115,8 @@ if ($cookies{'asessionkey'})
 		    #Таблица действий
 			print "<table cellspacing=0 border=0 align=\"center\">";
 			print "<tr><td ><b>Управление пользователями</b></td></tr>";
-			print "<tr><td align=left><a href=\"".$sitename."\">Список пользователей</a></td></tr>";
-			print "<tr><td align=left><a href=\"".$sitename."\">Активные сессии пользователей</a></td></tr>";
+			print "<tr><td align=left><a href=\"".$sitename."/cgi-bin/adminuserlist.pl\">Список пользователей</a></td></tr>";
+			print "<tr><td align=left><a href=\"".$sitename."/cgi-bin/adminusers.pl\">Активные сессии пользователей</a></td></tr>";
 			print "<tr><td><b>Управление каталогом</b></td></tr>";
 			print "<tr><td align=left><a href=\"".$sitename."/cgi-bin/admincat.pl\">Просмотр каталога</a></td></tr>";
 			print "<tr><td align=left><a href=\"".$sitename."\">Добавление нового диска</a></td></tr>";

@@ -38,7 +38,7 @@ table.maintable {
 	border-color:#ccddcc;
 	border-style:hidden;
 	border-collapse:collapse;
-	
+	border:1;	
 }
 span.remarks {
 	font-size:7pt;

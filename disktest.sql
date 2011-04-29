@@ -31,9 +31,10 @@ create table users(
 	id int NOT NULL auto_increment,
 	username varchar(32) ,
 	password varchar(255),
-	createdate timestamp,	
+	createdate datetime,	
 	status smallint,
 	lastdisk int,
+	lastvisit timestamp,
 	primary key (id),
 	foreign key (lastdisk) references imgs(id)
 	) charset=utf8;
@@ -44,7 +45,7 @@ create table usersession (
 	id int NOT NULL auto_increment,
 	userid int,
 	sessionkey varchar(255),
-	sessionstart timestamp,
+	sessionstart datetime,
 	sessiontime int, 
 	diskid int,
 	foreign key (diskid) references imgs(id),
