@@ -81,12 +81,12 @@ if ($cookies{'asessionkey'})
 		    my $act=$q->param('act');
 		    #
 		    #Выводим хедер
-		    open (USERHEAD, "userhead.inc");
-		    while(<USERHEAD>)
+		    open (HEAD, "ahead.inc");
+		    while(<HEAD>)
 		    {
 			print $_;
 		    }
-		    close (USERHEAD);
+		    close (HEAD);
 		    switch ($act)
 		    {
 			#

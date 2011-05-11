@@ -120,6 +120,7 @@ if ($cookies{'asessionkey'})
 			print "<tr><td><b>Управление каталогом</b></td></tr>";
 			print "<tr><td align=left><a href=\"".$sitename."/cgi-bin/admincat.pl\">Просмотр каталога</a></td></tr>";
 			print "<tr><td align=left><a href=\"".$sitename."\">Добавление нового диска</a></td></tr>";
+			print "<tr><td align=left><a href=\"".$sitename."/cgi-bin/admaddlable.pl\">Редактирование списка изданий</a></td></tr>";
 			print "<tr><td><b>Администрирование</b></td></tr>";
 			print "<tr><td align=left><a href=\"".$sitename."/cgi-bin/adminmodlist.pl\">Список модераторов</a></td></tr>";
 			print "<tr><td align=left><a href=\"".$sitename."/cgi-bin/adminpasschange.pl\">Смена пароля администратора</a></td></tr>";
