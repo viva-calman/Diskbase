@@ -119,7 +119,7 @@ if ($cookies{'asessionkey'})
 			    }
 			    $sth->finish();
 			    print "</table>";
-			
+			    print "<a href=\"".$sitename."/cgi-bin/admincp.pl\">Вернуться в панель управления</a>";	
 		    
 		    print $q->end_html();
 		}

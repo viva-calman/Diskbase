@@ -239,6 +239,8 @@ if ($cookies{'asessionkey'})
 			    print "<input type=\"hidden\" value=\"edit\" name=\"act\">";
 			    print "<input type=\"hidden\" value=\"$editid\" name=\"id\">";
 			    print "</table></form>";
+			    print "<a href=\"".$sitename."/cgi-bin/admincat.pl\">Вернуться в каталог</a><br>";
+			    print "<a href=\"".$sitename."/cgi-bin/admincp.pl\">Вернуться в панель управления</a>";
 			    print "</div></div>";
 			    print $q->end_html();
 			}

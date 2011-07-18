@@ -96,33 +96,43 @@ if ($cookies{'asessionkey'})
 			{
 			    #Поиск образов в рабочей директории
 			    my @list=`./unpack.sh search`;
-			    print "<form action=\"adminaddimg.pl\" method=\"post\">";
-			    print "<table class=\"maintable\" cellspacing=0 border=1 align=center>";
-			    print "<tr><td></td><td><b>Имя найденого образа</b></td></tr>";
-			    my $entry;
-			    my $count=0;
-			    my $chname;
-			    foreach $entry (@list)
+			    if (@list)
 			    {
-				$chname="entry".$count;    
-				print "<tr><td><input type=\"checkbox\" name=\"$chname\" value=\"$entry\">";
-				print "</td><td align=\"left\">";
-				$entry=~s/\/.+\///;
-				print $entry; 
-				print "</td></tr>";
-				$count++;
+				    print "<form action=\"adminaddimg.pl\" method=\"post\">";
+				    print "<table class=\"maintable\" cellspacing=0 border=1 align=center>";
+				    print "<tr><td></td><td><b>Имя найденого образа</b></td></tr>";
+				    my $entry;
+				    my $count=0;
+				    my $chname;
+				    foreach $entry (@list)
+				    {
+					$chname="entry".$count;    
+					print "<tr><td><input type=\"checkbox\" name=\"$chname\" value=\"$entry\">";
+					print "</td><td align=\"left\">";
+					$entry=~s/\/.+\///;
+					print $entry; 
+					print "</td></tr>";
+					$count++;
+				    }
+				    print "<input type=\"hidden\" name=\"count\" value=\"$count\">";
+				    print "<input type=\"hidden\" name=\"act\" value=\"add\">";
+				    print "<tr><td colspan=2><input type=\"submit\" value=\"Добавить\"></td></tr>";
+				    print "</table></form>";
+				    print "<br><a href=\"".$sitename."/cgi-bin/admincp.pl\">Вернуться в панель управления</a>";
 			    }
-			    print "<input type=\"hidden\" name=\"count\" value=\"$count\">";
-			    print "<input type=\"hidden\" name=\"act\" value=\"add\">";
-			    print "<tr><td colspan=2><input type=\"submit\" value=\"Добавить\"></td></tr>";
-			    print "</table></form>";
-			    print "<br><a href=\"".$sitename."/cgi-bin/admincp.pl\">Вернуться в панель управления</a>";
-			}	
+			    else
+			    {
+				print "<b>Образы не найдены</b><br>";
+				print "<a href=\"".$sitename."/cgi-bin/admincp.pl\">Вернуться в панель управления</a>"
+			    }
+			}
 			else
 			{
 			    #
 			}
 		    }
+		    print "</div></div>";
+		    print $q->end_html();
 		}
 	}	
 else

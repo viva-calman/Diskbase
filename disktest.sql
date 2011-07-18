@@ -77,3 +77,12 @@ insert into type (type) values ('Приложение к журналу'),('Сб
 
 insert into lable (lable) values ('Прочее');
 insert into imgs (type,title,lable,year,number,description,createdate,autorun) values (1,'Диск с грами',5,2008,3,'Самые лучшие гры','2010-02-27 12:00:00','NULL');
+
+create table news (
+    id int NOT NULL auto_increment,
+    data timestamp,
+    header varchar(255),
+    body text,
+    primary key (id)
+    ) charset=utf8;
+
