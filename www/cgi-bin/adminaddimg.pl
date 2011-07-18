@@ -85,12 +85,13 @@ if ($cookies{'asessionkey'})
 				    print "<tr><td>";
 				    $entrys[$i]=~s/\/.+\///;
 				    print $entrys[$i];
-				    print "</td><td>Добавлено $folderid</td><tr>";
+				    print "</td><td>Добавлено (директория номер $folderid)</td><tr>";
 				}
 				
 				$i++;
 			    }
 			    print "</table>";
+			    print "<a href=\"".$sitename."/cgi-bin/admincp.pl\">вернуться в панель управления</a>";
 			}
 			case 'search'
 			{

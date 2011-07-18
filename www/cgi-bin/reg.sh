@@ -4,7 +4,8 @@ PASSWD=$2
 #
 #Adding system user
 #
-useradd -p $(mkpasswd -Hmd5 $PASSWD) $USER -m
+useradd $USER -m
+echo $USER:$PASSWD | chpasswd
 (echo $PASSWD; echo $PASSWD)|smbpasswd -a -s $USER 
 mkdir /home/$USER/disk
 

@@ -156,10 +156,37 @@ if ($cookies{'asessionkey'})
 			    }
 			    else
 			    {
-			    my $sth=$dbh->prepare("update imgs set title='$title',lable='$lable',type='$type',year=$year,number=$number, description='$description',autorun='$autorun' where id=$editid");
-			    $sth->execute() or die $DBI::errstr;
-			    print "Редактирование успешно. Нажмите для перехода <a href=\"".$sitename."/cgi-bin/admincat.pl\">в каталог</a> или <a href=\"".$sitename."/cgi-bin/admincp.pl\">в панель управления</a>";
-			    print $q->end_html();
+				#Обновление записи
+				my $query="set ";
+				if($title)
+				{
+				    $query=$query."title='$title', ";
+				}
+				if($lable)
+				{
+				    $query=$query."lable='$lable', ";
+				}
+				if($type)
+				{
+				    $query=$query."type='$type', ";
+				}
+				if($year)
+				{
+				    $query=$query."year='$year', ";
+				}
+				if($number)
+				{
+				    $query=$query."number=$number, ";
+				}
+				if($description)
+				{
+				    $query=$query."description='$description', ";
+				}
+				    $query=$query."autorun='$autorun' ";
+				$sth=$dbh->prepare("update imgs $query where id=$editid");
+				$sth->execute() or die $DBI::errstr;
+				print "Редактирование успешно. Нажмите для перехода <a href=\"".$sitename."/cgi-bin/admincat.pl\">в каталог</a> или <a href=\"".$sitename."/cgi-bin/admincp.pl\">в панель управления</a>";
+				print $q->end_html();
 			    }
 			}
 			else
@@ -238,7 +265,8 @@ if ($cookies{'asessionkey'})
 			    print "<tr><td colspan=2><input type=\"submit\" value=\"Изменить\"></td></tr>";
 			    print "<input type=\"hidden\" value=\"edit\" name=\"act\">";
 			    print "<input type=\"hidden\" value=\"$editid\" name=\"id\">";
-			    print "</table></form>";
+			    print "</table></form><br>";
+			    print "<form action=\"admindeleteimg.pl\" method=\"post\"><input type=hidden value=\"$id\" name=\"id\"><input type=\"submit\" value=\"Удалить образ\"></form></br>";
 			    print "<a href=\"".$sitename."/cgi-bin/admincat.pl\">Вернуться в каталог</a><br>";
 			    print "<a href=\"".$sitename."/cgi-bin/admincp.pl\">Вернуться в панель управления</a>";
 			    print "</div></div>";
