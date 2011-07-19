@@ -7,5 +7,6 @@ PASSWD=$2
 useradd $USER -m
 echo $USER:$PASSWD | chpasswd
 (echo $PASSWD; echo $PASSWD)|smbpasswd -a -s $USER 
-mkdir /home/$USER/disk
+mkdir /home/$USER/help
+ln -s /home/$USER/help /home/$USER/disk
 

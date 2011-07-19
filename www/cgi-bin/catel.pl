@@ -106,6 +106,7 @@ if ($cookies{'sessionkey'})
 		    print "<form action=\"mount.pl\" method=\"post\">";
 		    print "<input type=\"hidden\" name=\"id\" value=\"".$id."\">";
 		    print "<input type=\"hidden\" name=\"autorun\" value=\"".$autorun."\">";
+		    print "<input type=\"hidden\" name=\"act\" value=\"mount\">";
 		    print "<input type=\"submit\" value=\"Смонтировать образ\">";
 		    print "</form></td></tr>";
 		    print "<tr><td><span class=\"remarks\">Внимание, если у вас уже смонтирован какой-либо образ, он будет отмонтирован и заменен текущим</span></td></tr>";
