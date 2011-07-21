@@ -45,7 +45,7 @@ sub menugen {
     }
     close (CATEL);
     print "<table border=0 sellspacing=0 align=center width=100%><tr>";
-    print "<td align=right><a href=\"".$sitename."/cgi-bin/login.pl\">Вход</a><a href=\"".$sitename."/help.html\">Помощь</a>  </td></tr></table>";
+    print "<td align=right><a href=\"".$sitename."/cgi-bin/login.pl\">Вход</a> <a href=\"".$sitename."/cgi-bin/registration.pl\">Регистрация</a> <a href=\"".$sitename."/help.html\">Помощь</a>  </td></tr></table>";
     print "</div><div class=\"text\">";
   
 }

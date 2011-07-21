@@ -4,7 +4,9 @@ PASSWD=$2
 #
 #Adding system user
 #
-useradd $USER -m
+useradd $USER -m -g www-data
+chown $USER:www-data /home/$USER
+chmod 775 /home/$USER
 echo $USER:$PASSWD | chpasswd
 (echo $PASSWD; echo $PASSWD)|smbpasswd -a -s $USER 
 mkdir /home/$USER/help

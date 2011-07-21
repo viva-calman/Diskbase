@@ -112,6 +112,8 @@ if ($cookies{'sessionkey'})
 			    	
 			    #Действия при монтировании нового образа
 			    print "<b>Монтирование образа</b>";
+			    $sth=$dbh->prepare("update usersession set diskid=$id where id=$sessid");
+			    $sth->execute() or die $DBI::errstr;
 			    my $mount=`./mount.sh $username $id`;
 			    print "образ смонтирован";
 			    print "<br><a href=\"".$sitename."/cgi-bin/cat.pl\">Вернуться в каталог</a>"
