@@ -1,7 +1,7 @@
 #!/bin/sh
-PAT='/home/calman/work/imgs/'
-STOR='/home/calman/work/storage'
-MOUNT='/home/calman/work/mountdir'
+PAT=
+STOR=
+MOUNT=
 LIST=$( find $PAT \( -name '*.iso' -o -name '*.nrg' -o -name '*.mdf' \) )
 ACT=$1
 #for i in $LIST ; do

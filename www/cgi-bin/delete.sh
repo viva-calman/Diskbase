@@ -1,5 +1,5 @@
 #!/bin/bash
-SDIR="/home/calman/work/storage"
+SDIR=
 DELDIR=$1
 #
 # Не удаляется, переименовывается в директорию формата "Номер директории".deleted

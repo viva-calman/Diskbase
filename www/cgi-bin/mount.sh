@@ -1,7 +1,7 @@
 #!/bin/bash
 USER=$1
 DISK=$2
-STORAGE='/home/calman/work/storage'
+STORAGE=
 rm /home/$USER/disk
 ln -s $STORAGE/$DISK /home/$USER/disk
 
