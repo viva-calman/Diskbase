@@ -4,11 +4,6 @@ STOR=
 MOUNT=
 LIST=$( find $PAT \( -name '*.iso' -o -name '*.nrg' -o -name '*.mdf' \) )
 ACT=$1
-#for i in $LIST ; do
-#	fuseiso $i $MOUNT
-#
-#   done
-
 case $ACT in
     search)
 	for i in $LIST ; do
@@ -22,6 +17,8 @@ case $ACT in
 	mkdir $STOR/$FOLD
 	cp -r $MOUNT/* $STOR/$FOLD
 	fusermount -u $MOUNT
+	AUTORUN=$(find $STOR/$FOLD -iname autorun.inf -exec cat {} \; | awk -F= '/open/ {print $2}')
+	echo $AUTORUN
 	sleep 2
     ;;
     *)

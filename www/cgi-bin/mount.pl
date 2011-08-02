@@ -111,7 +111,7 @@ if ($cookies{'sessionkey'})
 			{
 			    	
 			    #Действия при монтировании нового образа
-			    print "<b>Монтирование образа</b>";
+			    print "<b>Монтирование образа</b></br>";
 			    $sth=$dbh->prepare("update usersession set diskid=$id where id=$sessid");
 			    $sth->execute() or die $DBI::errstr;
 			    my $mount=`./mount.sh $username $id`;
@@ -120,7 +120,7 @@ if ($cookies{'sessionkey'})
 			}
 			case 'umount'
 			{
-			    my $umount=`rm /home/$username/disk && ln -s /home/$username/help /home/$username/disk`;				 $sth=$dbh->prepare("update users set lastdisk='NULL' where id=$userid");
+			    my $umount=`rm /home/$username/disk && ln -s /home/$username/help /home/$username/disk`;					$sth=$dbh->prepare("update users set lastdisk='NULL' where id=$userid");
 			    $sth->execute() or die $DBI::errstr;
 			    $sth=$dbh->prepare("update usersession set diskid='NULL' where id=$sessid");
 			    $sth->execute() or die $DBI::errstr;

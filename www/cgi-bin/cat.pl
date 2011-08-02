@@ -55,7 +55,10 @@ sub current_img {
 	{
 	    $last_disk=$last_disk." за ".$year."  год.</span>";
 	}
-	print $last_disk;
+	if($lableid)
+	{
+	    print $last_disk."<a href=\"".$sitename."/cgi-bin/mount.pl\">размонтировать</a>";
+	}
 };
 #
 #Процедурка Вывода селектов, и прочего
@@ -317,7 +320,8 @@ if ($cookies{'sessionkey'})
 
 			    }
 			    $sth->finish();
-			    print "</table></div>"
+			    print "</table></div>";
+			    print "<a href=\"".$sitename."\">На главную</a>";
 			}
 		    }
 		    print $q->end_html;

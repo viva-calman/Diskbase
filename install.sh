@@ -1,7 +1,8 @@
 #!/bin/bash
 echo "Enter site name (without http://):"
 read SITENAME
-
+echo "Enter server IP"
+read SERVIP
 echo "Enter path to storage directory:"
 read STORAGE
 echo "Enter admin password:"
@@ -26,6 +27,8 @@ echo "Set up domain name in scripts"
 STOR=\\$STORAGE
 FILES=$(ls ./www/cgi-bin)
 sed -i -e "s/http:\/\/localhost/$SITENAME/" ./www/index.html
+sed -i -e "s/http:\/\/localhost/$SITENAME/" ./www/help.html
+sed -i -e "s/SERVERNAME/$SERVIP/" ./www/help.html
 for I in $FILES
 do
 	echo -n .

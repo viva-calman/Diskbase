@@ -139,6 +139,7 @@ else
 		print $_;
 	}
 	close(FROM);
+	print "<a href=\"".$sitename."\">На главную</a>";
 	print "</div></div>";
 	print $q->end_html;
 }
