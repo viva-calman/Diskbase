@@ -10,7 +10,7 @@ use POSIX qw(strftime);
 use Digest::MD5 qw(md5_hex);
 #
 #
-my $sitename="http://localhost/";
+my $sitename="http://localhost";
 my $dsn="DBI:mysql:diskdb:localhost";
 my $db_user="discbase";
 my $db_password="windowssuxx";
@@ -37,7 +37,7 @@ if ($cookies{'asessionkey'})
 		#...и не просрочены - редирект на главную
 		$sth->finish();	
 		#my $q=new CGI;
-		$sitename=$sitename."cgi-bin/admincp.pl";
+		$sitename=$sitename."/cgi-bin/admincp.pl";
 		print $q->redirect($sitename);
 		}
 	
@@ -73,7 +73,7 @@ if ($act eq 'login')
 		#
 		#Ошибка логина
 		$errstate=1;
-		$errmessage="Неверные данные пользователя<br>если вы забыли свой пароль, обратитесь к администратору";
+		$errmessage="Неверные данные пользователя";
 	}
 	if($errstate==1)
 	{
@@ -105,7 +105,7 @@ if ($act eq 'login')
 		$sth->finish();
 		print $q->header(-charset=>'utf-8',-cookie=>$c);
 		print $q->start_html(-title=>'Вход в систему');
-		print "Вход успешен<br><a href=\"".$sitename."cgi-bin/admincp.pl\">Нажмите для перехода на главную страницу</a>";
+		print "Вход успешен<br><a href=\"".$sitename."/cgi-bin/admincp.pl\">Нажмите для перехода на главную страницу</a>";
 	}
 	print "</div></div>";
 	print $q->end_html;

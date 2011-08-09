@@ -164,7 +164,8 @@ if ($cookies{'asessionkey'})
 				    }
 				}
 			    print "<tr><td colspan=3><a href=\"".$sitename."/cgi-bin/adminmodlist.pl?act=addform\">Добавить нового модератора</a>";	
-			    print "</table>";
+			    print "</table><br>";
+			    print "<a href=\"".$sitename."/cgi-bin/admincp.pl\">Вернуться в панель управления</a>";
 			    print $q->end_html();
 			    $sth->finish();
 		        }

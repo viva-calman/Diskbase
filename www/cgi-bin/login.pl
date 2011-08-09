@@ -10,7 +10,7 @@ use POSIX qw(strftime);
 use Digest::MD5 qw(md5_hex);
 #
 #
-my $sitename="http://localhost/";
+my $sitename="http://localhost";
 my $admincontact="webmaster\@localhost";
 my $dsn="DBI:mysql:diskdb:localhost";
 my $db_user="discbase";

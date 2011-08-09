@@ -10,7 +10,7 @@ use POSIX qw(strftime);
 use Digest::MD5 qw(md5_hex);
 #
 #Определение переменных для подключения к БД, имени хоста и т.д.
-my $sitename="http://localhost/";
+my $sitename="http://localhost";
 my $dsn="DBI:mysql:diskdb:localhost";
 my $db_user="discbase";
 my $db_password="windowssuxx";
