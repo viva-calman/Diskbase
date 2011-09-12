@@ -7,6 +7,8 @@ echo "Enter path to storage directory:"
 read STORAGE
 echo "Enter admin password:"
 read ADMINPASS
+echo "Enter server ip"
+read SERVADDR
 echo
 echo
 echo "Creating storage directory:"
@@ -45,6 +47,8 @@ echo -n .
 sed -i -e "s/STORAGE\=/STORAGE\=$STOR/" ./www/cgi-bin/mount.sh
 echo -n .
 sed -i -e "s/SDIR\=/SDIR\=$STOR/" ./www/cgi-bin/delete.sh
+echo -n .
+sed -i -e "/##SERVERADDRESS##/$SERVADDR/" ./www/cgi-bin/reg.sh
 echo -n .
 echo
 echo "Comlpete"
