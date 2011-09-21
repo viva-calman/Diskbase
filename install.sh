@@ -29,8 +29,6 @@ echo "Set up domain name in scripts"
 STOR=\\$STORAGE
 FILES=$(ls ./www/cgi-bin)
 sed -i -e "s/http:\/\/localhost/$SITENAME/" ./www/index.html
-sed -i -e "s/http:\/\/localhost/$SITENAME/" ./www/help.html
-sed -i -e "s/SERVERNAME/$SERVIP/" ./www/help.html
 for I in $FILES
 do
 	echo -n .
@@ -50,6 +48,9 @@ sed -i -e "s/SDIR\=/SDIR\=$STOR/" ./www/cgi-bin/delete.sh
 echo -n .
 sed -i -e "/##SERVERADDRESS##/$SERVADDR/" ./www/cgi-bin/reg.sh
 echo -n .
+sed -i -e "/##SERVERADDRESS##/$SERVADDR/" ./www/cgi-bin/getbat.pl
+echo -n .
+
 echo
 echo "Comlpete"
 
