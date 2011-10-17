@@ -107,7 +107,8 @@ if ($cookies{'asessionkey'})
 				    my $chname;
 				    foreach $entry (@list)
 				    {
-					$chname="entry".$count;    
+					$chname="entry".$count;   
+					$entry=~s/\x0D?\x0A$//;
 					print "<tr><td><input type=\"checkbox\" name=\"$chname\" value=\"$entry\">";
 					print "</td><td align=\"left\">";
 					$entry=~s/\/.+\///;
