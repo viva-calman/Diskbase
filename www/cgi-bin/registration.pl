@@ -122,7 +122,7 @@ if ($act eq 'create')
 		#Создание пользователя
 		$sth=$dbh->prepare("insert into users (username,password,createdate,status) values ('$username','$password','$now',0)");
 		$sth->execute();
-		my $user=`sudo ./reg.sh $username $password`;
+		my $user=`sudo ./reg.sh $username $pass`;
 		print "Регистрация успешна, вы можете войти на сайт под вашим именем<br><a href=\"".$sitename."\">Нажмите для перехода на главную страницу</a>";
 	}
 	print "</div></div>";
