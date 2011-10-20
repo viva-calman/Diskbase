@@ -11,8 +11,8 @@ case $ACT in
 		done
     ;;
     unpack)
-	IMG=$2
-	FOLD=$3
+	IMG=$3
+	FOLD=$2
 	fuseiso $IMG $MOUNT
 	mkdir $STOR/$FOLD
 	cp -r $MOUNT/* $STOR/$FOLD

@@ -79,7 +79,7 @@ if ($cookies{'asessionkey'})
 				    my $folderid=$sth->fetchrow_array();
 				#Добавление образа ( передача данных скрипту обработки и создание данных в таблице
 				
-				    my $stat=`./unpack.sh unpack $entrys[$i] $folderid`;
+				    my $stat=`./unpack.sh unpack $folderid $entrys[$i]`;
 				
 				   # print "<table class=\"maintable\" cellspacing=0 border=1 align=center>";
 				    print "<tr><td>";
